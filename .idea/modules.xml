@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spring-boot-sample-simple.iml" filepath="$PROJECT_DIR$/spring-boot-sample-simple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/foodlogbotbatch.iml" filepath="$PROJECT_DIR$/foodlogbotbatch.iml" />
     </modules>
   </component>
 </project>

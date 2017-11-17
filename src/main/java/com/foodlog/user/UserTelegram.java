@@ -8,24 +8,16 @@ import java.util.Objects;
 /**
  * A UserTelegram.
  */
-@Entity
-@Table(name = "user_telegram")
 public class UserTelegram implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "telegram_id")
     private Integer telegramId;
 
-    @Column(name = "first_name")
     private String first_name;
 
-    @Column(name = "last_name")
     private String last_name;
 
     @OneToOne

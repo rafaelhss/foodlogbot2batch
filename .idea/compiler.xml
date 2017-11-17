@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-boot-sample-simple" />
+        <module name="foodlogbotbatch" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="spring-boot-sample-simple" target="1.8" />
+    <bytecodeTargetLevel>
+      <module name="foodlogbotbatch" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

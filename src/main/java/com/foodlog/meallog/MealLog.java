@@ -13,37 +13,18 @@ import java.util.Objects;
 /**
  * A MealLog.
  */
-@Entity
-@Table(name = "meal_log")
 public class MealLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @Transient
     private byte[] photo;
-
-    @Column(name = "photo_content_type", nullable = false)
     private String photoContentType;
-
-    @NotNull
-    @Column(name = "meal_date_time", nullable = false)
     private Instant mealDateTime;
-
-    @Column(name = "jhi_comment")
     private String comment;
-
-    @Column(name = "update_id")
     private Long updateId;
 
-    @ManyToOne
     private ScheduledMeal scheduledMeal;
 
-    @ManyToOne
     private User user;
 
     public Long getId() {

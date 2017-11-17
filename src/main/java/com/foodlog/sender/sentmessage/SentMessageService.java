@@ -3,6 +3,8 @@ package com.foodlog.sender.sentmessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,27 +15,26 @@ import java.util.Date;
 public class SentMessageService {
 
     @Autowired
-    SentMessageRepository sentMessageRepository;
+    private SentMessageRepository sentMessageRepository;
 
-    public void logSentMessage(long sentId, String msgType) {
+
+    public void logSentMessage(String messageid, String messageType) {
         //Log Message
         SentMessage sentMessage = new SentMessage();
-        sentMessage.setSentDate(new Date());
-        sentMessage.setMessageType(msgType);
-        sentMessage.setSentId(sentId);
-
-        sentMessageRepository.deleteByMessageType(msgType);
+        sentMessage.setId(messageid.hashCode());
+        sentMessage.setText(messageid);
+        sentMessage.setSentDateTime(Instant.now());
+        sentMessage.setMessageType(messageType);
         sentMessageRepository.save(sentMessage);
+
     }
 
-    public boolean isSent(long sentId, String msgType){
-        return (sentMessageRepository.findBySentIdAndMessageType(sentId, msgType) == null);
+    public boolean isSent(String messageid){
+        return sentMessageRepository.findOne(messageid.hashCode()) != null;
     }
 
-    public void clearAllByPastDays(int days){
-        final Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.HOUR, -days);
-        sentMessageRepository.deleteBySentDateBefore(cal.getTime());
+    public void clearAllByPastDays(int days, String messageType){
+        sentMessageRepository.deleteBySentDateTimeBeforeAndMessageType(Instant.now().minus(days, ChronoUnit.DAYS), messageType);
     }
 
 

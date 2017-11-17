@@ -3,6 +3,7 @@ package com.foodlog.sender.sentmessage;
 import jdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -13,13 +14,11 @@ import java.util.Date;
 @Table(name = "sent_message")
 public class SentMessage {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    private Long id;
-    private Long sentId;
-    private Date sentDate;
-    private String messageType;
+    private Integer id;
 
+    private String text;
+    private String messageType;
+    private Instant sentDateTime;
 
     public String getMessageType() {
         return messageType;
@@ -29,32 +28,27 @@ public class SentMessage {
         this.messageType = messageType;
     }
 
+    public String getText() {
+        return text;
+    }
 
+    public void setText(String text) {
+        this.text = text;
+    }
 
+    public Instant getSentDateTime() {
+        return sentDateTime;
+    }
 
+    public void setSentDateTime(Instant sentDateTime) {
+        this.sentDateTime = sentDateTime;
+    }
 
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public Date getSentDate() {
-        return sentDate;
-    }
-
-    public void setSentDate(Date sentDate) {
-        this.sentDate = sentDate;
-    }
-
-    public Long getSentId() {
-        return sentId;
-    }
-
-    public void setSentId(Long sentId) {
-        this.sentId = sentId;
     }
 }

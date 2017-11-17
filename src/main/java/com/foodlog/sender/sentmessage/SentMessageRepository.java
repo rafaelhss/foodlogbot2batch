@@ -1,20 +1,17 @@
 package com.foodlog.sender.sentmessage;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
- * Created by rafael on 09/06/17.
+ * Created by rafael on 17/11/17.
  */
-@SuppressWarnings("unused")
 @Repository
-public interface SentMessageRepository extends JpaRepository<SentMessage,Long> {
-    public void deleteBySentDateBefore(Date yesterday);
-    public void deleteByMessageType(String messageType);
-    public SentMessage findBySentId(Long sentId);
-    public SentMessage findBySentIdAndMessageType(Long sentId, String messageType);
+public interface SentMessageRepository extends JpaRepository<SentMessage,Integer> {
 
+    @Transactional
+    void deleteBySentDateTimeBeforeAndMessageType(Instant minus, String messageType);
 }

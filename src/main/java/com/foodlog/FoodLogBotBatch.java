@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @SpringBootApplication
@@ -29,14 +28,9 @@ public class FoodLogBotBatch implements CommandLineRunner {
 
 	@Autowired
 	public ScheduledMealBatch scheduledMealBatch;
-	@Autowired
-	public ReportElapsedMealTimeBatch reportElapsedMealTimeBatch;
-	@Autowired
-	public ReportTargetMissBatch reportTargetMissBatch;
 
 
 	@Override
-	@Transactional
 	public void run(String... args) {
 
 
@@ -45,6 +39,7 @@ public class FoodLogBotBatch implements CommandLineRunner {
 		System.out.println("########## Start scheduledMealBatch");
 		System.out.println("########## Start scheduledMealBatch");
 
+
 		scheduledMealBatch.run();
 
 		System.out.println("########## End scheduledMealBatch");
@@ -52,34 +47,6 @@ public class FoodLogBotBatch implements CommandLineRunner {
 		System.out.println("########## End scheduledMealBatch");
 		System.out.println("########## End scheduledMealBatch");
 
-		System.out.println("");
-
-		System.out.println("########## Start reportElapsedMealTimeBatch");
-		System.out.println("########## Start reportElapsedMealTimeBatch");
-		System.out.println("########## Start reportElapsedMealTimeBatch");
-		System.out.println("########## Start reportElapsedMealTimeBatch");
-
-		reportElapsedMealTimeBatch.run();
-
-		System.out.println("########## End reportElapsedMealTimeBatch");
-		System.out.println("########## End reportElapsedMealTimeBatch");
-		System.out.println("########## End reportElapsedMealTimeBatch");
-		System.out.println("########## End reportElapsedMealTimeBatch");
-
-		System.out.println("");
-
-		System.out.println("########## Start reportTargetMissBatch");
-		System.out.println("########## Start reportTargetMissBatch");
-		System.out.println("########## Start reportTargetMissBatch");
-		System.out.println("########## Start reportTargetMissBatch");
-
-		reportTargetMissBatch.run();
-
-
-		System.out.println("########## End reportTargetMissBatch");
-		System.out.println("########## End reportTargetMissBatch");
-		System.out.println("########## End reportTargetMissBatch");
-		System.out.println("########## End reportTargetMissBatch");
 	}
 
 

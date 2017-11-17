@@ -9,36 +9,14 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * A ScheduledMeal.
- */
-@Entity
-@Table(name = "scheduled_meal")
 public class ScheduledMeal implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @NotNull
-    @Column(name = "name", nullable = false)
     private String name;
-
-    @NotNull
-    @Column(name = "description", nullable = false)
     private String description;
-
-    @NotNull
-    @Pattern(regexp = "^((?:[01]\\d|2[0-3]):[0-5]\\d$)")
-    @Column(name = "target_time", nullable = false)
     private String targetTime;
-
-    @ManyToOne
     private User user;
-
     public Long getId() {
         return id;
     }
@@ -122,10 +100,10 @@ public class ScheduledMeal implements Serializable {
     @Override
     public String toString() {
         return "ScheduledMeal{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", targetTime='" + getTargetTime() + "'" +
-            "}";
+                "id=" + getId() +
+                ", name='" + getName() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", targetTime='" + getTargetTime() + "'" +
+                "}";
     }
 }
