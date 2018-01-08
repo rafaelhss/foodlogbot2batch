@@ -92,6 +92,7 @@ public class Adapter {
             response = client.newCall(request).execute();
             String jsonResp =  response.body().string();
 
+            System.out.println("jsonResp: " + jsonResp);
             T t = new Gson().fromJson(jsonResp, classOfT);
             return t;
 
