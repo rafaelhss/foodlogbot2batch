@@ -1,4 +1,4 @@
-package com.foodlog;
+package com.foodlog.config;
 
 /**
  * Created by rafael on 01/11/17.
