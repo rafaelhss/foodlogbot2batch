@@ -31,14 +31,8 @@ public class Sender {
 
     //para testes
     public Sender(){
-        this.botId = "TESTE";
+        this.botId = TelegramConfig.BOT_ID;
         this.UrlTemplate = UrlTemplate.replace("@@BOTID@@", botId);
-    }
-
-    public Sender init(String botId){
-        this.botId = botId;
-        this.UrlTemplate = UrlTemplate.replace("@@BOTID@@", botId);
-        return this;
     }
 
     private boolean sendResponse(Integer id, String text_response) {
@@ -50,7 +44,7 @@ public class Sender {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             System.out.println(url);
-            //BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             return true;
 
         } catch (IOException ex) {
@@ -78,8 +72,11 @@ public class Sender {
                 return false;
             }
         }
-        sentMessageService.logSentMessage(text_response + id.toString().hashCode(), "NO_REPEAT");
-        return sendResponse(id, text_response);
+        if(sendResponse(id, text_response)) {
+            sentMessageService.logSentMessage(text_response + id.toString().hashCode(), "NO_REPEAT");
+            return true;
+        }
+        return false;
     }
 
     public void sendImage(Integer id, byte[] image){

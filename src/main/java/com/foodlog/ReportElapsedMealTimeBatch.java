@@ -35,7 +35,7 @@ public class ReportElapsedMealTimeBatch {
             long elapsedMealTime = Duration.between(mealLog.getMealDateTime(), Instant.now()).getSeconds() / (60 * 60);
             String msg = "Hora de comer! A ultima refeição foi há " + elapsedMealTime + " horas.";
 
-            sender.init(TelegramConfig.BOT_ID).sendResponse(mealLog.getUser(), msg, true);
+            sender.sendResponse(mealLog.getUser(), msg, true);
         }
     }
 }

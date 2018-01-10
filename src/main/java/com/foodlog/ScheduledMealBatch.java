@@ -21,19 +21,13 @@ import java.util.Date;
 public class ScheduledMealBatch {
 
     @Autowired
-    private Adapter adapter;
-
-    @Autowired
     private Sender sender;
     @Autowired
     private ScheduledMealAdapter scheduledMealAdapter;
-    @Autowired
-    private UserTelegramAdapter userTelegramAdapter;
 
     public void run() {
         System.out.println("########## here we gooooooo  :" + new Date());
 
-        adapter.setHost("http://localhost:8080");
 
         //busca os scheduled de todos os usuarios que vao ocorrer de agora ate daqui ha 20 min
         for (ScheduledMeal scheduledMeal : scheduledMealAdapter.getAllScheduledMealsInWindow(20)) {
@@ -42,7 +36,7 @@ public class ScheduledMealBatch {
                     + scheduledMeal.getDescription();
 
 
-            sender.init(TelegramConfig.BOT_ID).sendResponse(scheduledMeal.getUser(), msg, true);
+            sender.sendResponse(scheduledMeal.getUser(), msg, true);
 
         }
     }
