@@ -18,12 +18,11 @@ public class SentMessageService {
 
     @Autowired
     private SentMessageRepository sentMessageRepository;
-
-    public SentMessageService(){
-        sentMessageRepository.deleteBySentDateTimeBefore(Instant.now().minus(1, ChronoUnit.DAYS));
-    }
+    
 
     public void logSentMessage(User target, String text, String messageType) {
+        sentMessageRepository.deleteBySentDateTimeBefore(Instant.now().minus(1, ChronoUnit.DAYS));
+
         //Log Message
         SentMessage sentMessage = new SentMessage();
         sentMessage.setTextHash(text.hashCode());
