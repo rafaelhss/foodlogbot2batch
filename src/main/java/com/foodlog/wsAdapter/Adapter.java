@@ -1,10 +1,13 @@
 package com.foodlog.wsAdapter;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import okhttp3.*;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.Instant;
 
 /**
  * Created by rafael on 16/11/17.
@@ -16,6 +19,16 @@ public class Adapter {
     private String host = "http://localhost:8080";
 
     private String token = null;
+
+
+    public Adapter(){
+        String env_host = System.getenv("FOODLOG_HOST");
+        if(env_host != null && !env_host.isEmpty()){
+            host = env_host;
+        }
+        System.out.println("Usando host: " + host);
+    }
+
 
     public String getToken() {
         if(token == null){
@@ -88,12 +101,17 @@ public class Adapter {
                 .build();
         Response response = null;
         try {
-            System.out.println("GET " + url);
+            //System.out.println("GET " + url);
             response = client.newCall(request).execute();
             String jsonResp =  response.body().string();
 
-            System.out.println("jsonResp: " + jsonResp);
-            T t = new Gson().fromJson(jsonResp, classOfT);
+            //System.out.println("jsonResp: " + jsonResp);
+
+            Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, (JsonDeserializer<Instant>) (json, type, jsonDeserializationContext) ->
+                    Instant.parse(json.getAsJsonPrimitive().getAsString())).create();
+            T t = gson.fromJson(jsonResp, classOfT);
+
+
             return t;
 
         } catch (IOException e) {

@@ -1,6 +1,10 @@
 package com.foodlog.sender;
 
+import com.foodlog.config.TelegramConfig;
 import com.foodlog.sender.sentmessage.SentMessageService;
+import com.foodlog.user.User;
+import com.foodlog.user.UserTelegram;
+import com.foodlog.user.UserTelegramAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +26,9 @@ public class Sender {
     protected String UrlTemplate      = "https://api.telegram.org/bot@@BOTID@@/sendmessage?chat_id=@@CHATID@@&text=@@TEXT@@";
     protected String UrlImageTemplate = "https://api.telegram.org/bot@@BOTID@@/sendPhoto?chat_id=@@CHATID@@";
 
+    @Autowired
+    private UserTelegramAdapter userTelegramAdapter;
+
     //para testes
     public Sender(){
         this.botId = "TESTE";
@@ -34,7 +41,7 @@ public class Sender {
         return this;
     }
 
-    private void sendResponse(Integer id, String text_response) {
+    private boolean sendResponse(Integer id, String text_response) {
         try {
             System.out.println("Sending response....");
             text_response = URLEncoder.encode(text_response, "UTF-8");
@@ -44,24 +51,35 @@ public class Sender {
             conn.setRequestMethod("GET");
             System.out.println(url);
             //BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            return true;
 
         } catch (IOException ex) {
             System.out.println("errrxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: " + ex.getMessage());
             ex.printStackTrace();
+            return false;
         }
-
     }
 
-    public void sendResponse(Integer id, String text_response, boolean noRepeat){
+    public boolean sendResponse(User user, String text_response, boolean noRepeat) {
+        UserTelegram userTelegram = userTelegramAdapter.getUserByLogin(user);
+        if(userTelegram == null){
+            System.out.println("Usuario nao encontrado: " + user);
+            return false;
+        } else {
+            return sendResponse(userTelegram.getTelegramId(), text_response, noRepeat);
+        }
+    }
+
+    public boolean sendResponse(Integer id, String text_response, boolean noRepeat){
         if(noRepeat) {
             sentMessageService.clearAllByPastDays(1, this.getClass().toString());
             if (sentMessageService.isSent(text_response + id.toString().hashCode())) {
                 System.out.println("Mensagem ja enviada: " + text_response + id.toString().hashCode());
-                return;
+                return false;
             }
         }
         sentMessageService.logSentMessage(text_response + id.toString().hashCode(), "NO_REPEAT");
-        sendResponse(id, text_response);
+        return sendResponse(id, text_response);
     }
 
     public void sendImage(Integer id, byte[] image){

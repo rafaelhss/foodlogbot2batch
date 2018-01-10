@@ -29,23 +29,22 @@ public class FoodLogBotBatch implements CommandLineRunner {
 	@Autowired
 	public ScheduledMealBatch scheduledMealBatch;
 
+	@Autowired
+	public ReportElapsedMealTimeBatch reportElapsedMealTimeBatch;
+
 
 	@Override
 	public void run(String... args) {
 
-
 		System.out.println("########## Start scheduledMealBatch");
-		System.out.println("########## Start scheduledMealBatch");
-		System.out.println("########## Start scheduledMealBatch");
-		System.out.println("########## Start scheduledMealBatch");
-
-
 		scheduledMealBatch.run();
+		System.out.println("########## End scheduledMealBatch");
 
-		System.out.println("########## End scheduledMealBatch");
-		System.out.println("########## End scheduledMealBatch");
-		System.out.println("########## End scheduledMealBatch");
-		System.out.println("########## End scheduledMealBatch");
+
+
+		System.out.println("########## Start reportElapsedMealTimeBatch");
+		reportElapsedMealTimeBatch.run();
+		System.out.println("########## End reportElapsedMealTimeBatch");
 
 	}
 

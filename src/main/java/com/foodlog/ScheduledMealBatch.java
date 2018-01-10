@@ -41,9 +41,8 @@ public class ScheduledMealBatch {
                     + "(" + scheduledMeal.getTargetTime() + "):   "
                     + scheduledMeal.getDescription();
 
-            UserTelegram user = userTelegramAdapter.getUserByLogin(scheduledMeal.getUser());
 
-            sender.init(TelegramConfig.BOT_ID).sendResponse(user.getTelegramId(), msg, true);
+            sender.init(TelegramConfig.BOT_ID).sendResponse(scheduledMeal.getUser(), msg, true);
 
         }
     }
