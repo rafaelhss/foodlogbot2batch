@@ -22,7 +22,7 @@ public class SentMessageService {
         //Log Message
         SentMessage sentMessage = new SentMessage();
         sentMessage.setId(messageid.hashCode());
-        sentMessage.setText(messageid);
+        sentMessage.setText(messageid.substring(254));
         sentMessage.setSentDateTime(Instant.now());
         sentMessage.setMessageType(messageType);
         sentMessageRepository.save(sentMessage);
