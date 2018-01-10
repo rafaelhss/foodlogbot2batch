@@ -54,30 +54,16 @@ public class Sender {
         }
     }
 
-    public boolean sendResponse(User user, String text_response, boolean noRepeat) {
+    public boolean sendResponse(User user, String text_response) {
         UserTelegram userTelegram = userTelegramAdapter.getUserByLogin(user);
         if(userTelegram == null){
             System.out.println("Usuario nao encontrado: " + user);
             return false;
         } else {
-            return sendResponse(userTelegram.getTelegramId(), text_response, noRepeat);
+            return sendResponse(userTelegram.getTelegramId(), text_response);
         }
     }
 
-    public boolean sendResponse(Integer id, String text_response, boolean noRepeat){
-        if(noRepeat) {
-            sentMessageService.clearAllByPastDays(1, this.getClass().toString());
-            if (sentMessageService.isSent(text_response + id.toString().hashCode())) {
-                System.out.println("Mensagem ja enviada: " + text_response + id.toString().hashCode());
-                return false;
-            }
-        }
-        if(sendResponse(id, text_response)) {
-            sentMessageService.logSentMessage(text_response + id.toString().hashCode(), "NO_REPEAT");
-            return true;
-        }
-        return false;
-    }
 
     public void sendImage(Integer id, byte[] image){
         URL url = null;

@@ -1,10 +1,7 @@
 package com.foodlog.sender.sentmessage;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.Date;
 
 /**
  * Created by rafael on 09/06/17.
@@ -14,9 +11,12 @@ import java.util.Date;
 @Table(name = "sent_message")
 public class SentMessage {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String text;
+    private String target;
+
+    private int textHash;
     private String messageType;
     private Instant sentDateTime;
 
@@ -28,12 +28,12 @@ public class SentMessage {
         this.messageType = messageType;
     }
 
-    public String getText() {
-        return text;
+    public int getTextHash() {
+        return textHash;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTextHash(int textHash) {
+        this.textHash = textHash;
     }
 
     public Instant getSentDateTime() {
@@ -44,11 +44,19 @@ public class SentMessage {
         this.sentDateTime = sentDateTime;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
     }
 }

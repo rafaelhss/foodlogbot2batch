@@ -25,6 +25,9 @@ public class ScheduledMealBatch {
     @Autowired
     private ScheduledMealAdapter scheduledMealAdapter;
 
+    @Autowired
+    private SentMessageService sentMessageService;
+
     public void run() {
         System.out.println("########## here we gooooooo  :" + new Date());
 
@@ -35,9 +38,12 @@ public class ScheduledMealBatch {
                     + "(" + scheduledMeal.getTargetTime() + "):   "
                     + scheduledMeal.getDescription();
 
-
-            sender.sendResponse(scheduledMeal.getUser(), msg, true);
-
+            if(!sentMessageService.isSent(scheduledMeal.getUser(), msg, "SCHEDULED" + scheduledMeal.getId())){
+                if(sender.sendResponse(scheduledMeal.getUser(), msg)){
+                    sentMessageService.logSentMessage(scheduledMeal.getUser(), msg, "SCHEDULED" + scheduledMeal.getId());
+                }
+            }
+            sender.sendResponse(scheduledMeal.getUser(), msg);
         }
     }
 }
