@@ -43,7 +43,6 @@ public class ScheduledMealBatch {
                     sentMessageService.logSentMessage(scheduledMeal.getUser(), msg, "SCHEDULED" + scheduledMeal.getId());
                 }
             }
-            sender.sendResponse(scheduledMeal.getUser(), msg);
         }
     }
 }

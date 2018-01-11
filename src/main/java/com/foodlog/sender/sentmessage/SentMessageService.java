@@ -31,6 +31,8 @@ public class SentMessageService {
         sentMessage.setTarget(target.getId().toString());
         sentMessageRepository.save(sentMessage);
 
+        System.out.println("Saved: " + target + " | " +  text + " | " + messageType);
+
     }
 
     public void clearAllByUserAndType(String target, String messageType){
