@@ -18,7 +18,7 @@ public class SentMessageService {
 
     @Autowired
     private SentMessageRepository sentMessageRepository;
-    
+
 
     public void logSentMessage(User target, String text, String messageType) {
         sentMessageRepository.deleteBySentDateTimeBefore(Instant.now().minus(1, ChronoUnit.DAYS));

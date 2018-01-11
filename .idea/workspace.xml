@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="121dfbd8-ba69-4093-bbaf-d6411bb5ef2b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/foodlog/sender/sentmessage/SentMessageService.java" afterPath="$PROJECT_DIR$/src/main/java/com/foodlog/sender/sentmessage/SentMessageService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,14 +86,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SentMessageService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SentMessageService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/foodlog/sender/sentmessage/SentMessageService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="132">
-              <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="23" column="51" lean-forward="false" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -150,13 +160,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/meallog/MealLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/FoodLogBotBatch.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/wsAdapter/Adapter.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/sender/sentmessage/SentMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/sender/Sender.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/sender/sentmessage/SentMessageRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/ReportElapsedMealTimeBatch.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/ScheduledMealBatch.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/foodlog/sender/sentmessage/SentMessageService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -1225,14 +1235,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="91" lean-forward="false" selection-start-line="17" selection-start-column="91" selection-end-line="17" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/foodlog/FoodLogBotBatch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1289,10 +1291,18 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/foodlog/sender/sentmessage/SentMessageService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
-          <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="51" lean-forward="false" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
