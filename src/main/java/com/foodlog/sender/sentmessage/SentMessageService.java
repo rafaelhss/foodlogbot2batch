@@ -42,6 +42,10 @@ public class SentMessageService {
 
     public boolean isSent(User user, String msg, String messageType) {
         List<SentMessage> msgs = sentMessageRepository.findByTargetAndTextHashAndMessageType(user.getId().toString(), msg.hashCode(), messageType);
+
+
+
+        System.out.println("isSent "+(msgs != null && msgs.size() > 0) +": " + user + " | " +  msg + " | " + messageType);
         return (msgs != null && msgs.size() > 0);
     }
 }
